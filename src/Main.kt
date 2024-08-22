@@ -1,10 +1,11 @@
 import objetos.Aluno
+import objetos.Voo
 
-fun main(){
-    while(true){
+fun main() {
+    while (true) {
         print("Selecione uma opção: ")
-        val exe:Int = readln().toInt()
-        when(exe) {
+        val exe: Int = readln().toInt()
+        when (exe) {
             1 -> exe1();
             2 -> exe2();
             3 -> exe3();
@@ -13,51 +14,52 @@ fun main(){
             6 -> exe6();
             7 -> exe7();
             8 -> exe8();
-            0 ->{
+            0 -> {
                 println("Finalizando o programa...")
                 break;
             }
+
             else -> println("Opção inválida...");
         }
     }
 }
 
-fun exe1(){
+fun exe1() {
 //    Exercício 1: Verificação de Números Primos (5 XP)
 //    Contexto: Carlos está criando uma ferramenta matemática para verificar se um número é
 //    primo. Ele gostaria de automatizar essa tarefa para números fornecidos por usuários.
 //    Instruções: Escreva um programa que leia um número inteiro e determine se ele é primo
 //    ou não. O programa deve exibir uma mensagem indicando se o número é primo.
     print("Digite um número inteiro: ")
-    val num:Int = readln().toInt()
-    var primo:Boolean = true
-    if(num == 0 || num == 1){
+    val num: Int = readln().toInt()
+    var primo: Boolean = true
+    if (num == 0 || num == 1) {
         println("exceção")
         return
     }
-    for (i in 2..num-1) {
-        if (num % i == 0){
+    for (i in 2..num - 1) {
+        if (num % i == 0) {
             primo = false
             break
         }
     }
-    println(if(primo)"$num é um número primo" else "$num não é um número primo")
+    println(if (primo) "$num é um número primo" else "$num não é um número primo")
     return
 }
 
-fun exe2(){
+fun exe2() {
 //    Exercício 2: Contagem de Palavras em um Texto (5 XP)
 //    Contexto: Ana é uma escritora que deseja contar quantas palavras há em um parágrafo
 //    do seu livro. Ela precisa de uma ferramenta simples que faça essa contagem
 //    automaticamente.
 //    Instruções: Escreva um programa que leia um parágrafo de texto e conte o número de
 //    palavras nele. Exiba a contagem total de palavras.
-    val paragrafo:String = readlnOrNull() ?:""
+    val paragrafo: String = readlnOrNull() ?: ""
     println(paragrafo.split(Regex("\\s+")).count())
     return
 }
 
-fun exe3(){
+fun exe3() {
 //    Exercício 3: Gerenciamento de Notas dos Alunos (10 XP)
 //    Contexto: João é professor e precisa criar um sistema para calcular as médias das notas
 //    dos alunos. Ele deseja automatizar o processo de cálculo das médias e determinar se os
@@ -67,7 +69,7 @@ fun exe3(){
 //    média das notas de cada um. O programa deve exibir o nome do aluno, a média das
 //    notas, e se ele foi aprovado (média >= 7.0).
     val alunos = mutableListOf<Aluno>()
-    for (i in 1..5){
+    for (i in 1..5) {
         print("Digite o nome do aluno $i: ")
         val nome = readln() ?: ""
 
@@ -76,32 +78,32 @@ fun exe3(){
 
         alunos.add(Aluno(nome, notas))
     }
-    for (aluno in alunos){
+    for (aluno in alunos) {
         val media = aluno.media()
-        val passou = if(aluno.aprovado()) "aprovado" else "reprovado"
+        val passou = if (aluno.aprovado()) "aprovado" else "reprovado"
         println("O aluno ${aluno.nome} foi $passou.\nMédia: ${"%.2f".format(media)}")
     }
     return
 }
 
-fun exe4(){
+fun exe4() {
 //    Exercício 4: Ordenação de Nomes de Alunos (10 XP)
 //    Contexto: Maria é coordenadora de uma turma e deseja criar uma lista de alunos em
 //    ordem alfabética. Ela quer que o programa exiba a lista organizada de maneira intuitiva.
 //    Instruções: Escreva um programa que leia os nomes de 10 alunos e os armazene em um
 //    array. Em seguida, ordene os nomes em ordem alfabética e exiba a lista organizada.
     val nomes = ArrayList<String>()
-    for (i in 1..10){
+    for (i in 1..10) {
         print("Digite o nome $i: ")
         val nome = readln() ?: ""
         nomes.add(nome)
     }
-        nomes.sort()
-        nomes.forEach{ println(it)}
+    nomes.sort()
+    nomes.forEach { println(it) }
     return
 }
 
-fun exe5(){
+fun exe5() {
 //    Exercício 5: Simulação de Jogo de Dados (10 XP)
 //    Contexto: Pedro está desenvolvendo um jogo simples de dados para uma feira de
 //    ciências. Ele quer simular o lançamento de dois dados e calcular a soma dos valores.
@@ -111,16 +113,16 @@ fun exe5(){
 //    lançamento.
     print("Quantas vezes você deseja lançar os dados? ")
     val vezes = readln().toIntOrNull() ?: 1
-    for (i in 1..vezes){
-    val dado1:Int = (1..6).random()
-    val dado2:Int = (1..6).random()
-    val soma:Int = dado1 + dado2
-    println("Lançamento $i:\nDado1: $dado1\nDado2: $dado2\nSoma = $soma\n")
+    for (i in 1..vezes) {
+        val dado1: Int = (1..6).random()
+        val dado2: Int = (1..6).random()
+        val soma: Int = dado1 + dado2
+        println("Lançamento $i:\nDado1: $dado1\nDado2: $dado2\nSoma = $soma\n")
     }
     return
 }
 
-fun exe6(){
+fun exe6() {
 //    Exercício 6: Análise de Dados Meteorológicos (10 XP)
 //    Contexto: Julia está trabalhando em um projeto de análise de dados meteorológicos e
 //    precisa calcular a temperatura média, máxima e mínima de um mês. Ela quer que o
@@ -130,7 +132,7 @@ fun exe6(){
 //    mínima, e exiba essas informações junto com os dias em que ocorreram as temperaturas
 //    máxima e mínima.
     val dadosMetereologicos = DoubleArray(30)
-    for (i in dadosMetereologicos.indices){
+    for (i in dadosMetereologicos.indices) {
         print("Temperatura do dia ${i + 1}:")
         dadosMetereologicos[i] = readln().toDoubleOrNull() ?: 0.0
     }
@@ -147,7 +149,7 @@ fun exe6(){
     return
 }
 
-fun exe7(){
+fun exe7() {
 //    Exercício 7: Sistema de Reserva de Passagens Aéreas (15 XP)
 //    Contexto: Lucas está desenvolvendo um sistema de reservas para uma companhia
 //    aérea. Ele deseja criar um programa que permita aos usuários verificar a disponibilidade
@@ -156,10 +158,36 @@ fun exe7(){
 //    assentosDisponiveis (um array de inteiros), e reservarAssento(assento: Int): Boolean.
 //    Escreva um programa que permita ao usuário verificar a disponibilidade de um assento
 //    específico em um voo e reservar o assento se ele estiver disponível.
+// Inicializando um voo com 10 assentos disponíveis
 
+        val voo = Voo("0000", IntArray(10) { it + 1 })
+    while (true) {
+        // Exibindo os assentos disponíveis
+        // Verifica se há assentos disponíveis
+        if (voo.disponiveis().isEmpty()) {
+            println("Não há mais assentos disponíveis.")
+            break // Sai do loop se não houver assentos disponíveis
+        }
+
+        println("Assentos disponíveis: ${voo.disponiveis()}")
+
+        // Solicitando ao usuário o número do assento para reserva
+        print("Digite o número do assento para reserva: ")
+        val assento = readln().toInt()
+
+        if (voo.verifDisponibilidade(assento)) {
+            if (voo.reservarAssento(assento)) {
+                println("Assento $assento reservado!")
+            } else {
+                println("Erro ao reservar o assento $assento.")
+            }
+        } else {
+            println("O assento $assento não está disponível.")
+        }
+    }
 }
 
-fun exe8(){
+fun exe8() {
 //    Exercício 8: Sistema de Gestão de Estoque com Reposição Automática (15 XP)
 //    Contexto: Mariana é gerente de um armazém e deseja implementar um sistema para
 //    gerenciar o estoque de produtos. Ela quer que o sistema verifique se a quantidade de um
