@@ -4,23 +4,23 @@ import objetos.Voo
 
 fun main() {
     while (true) {
-        print("\nSelecione uma opção (0 para finalizar o programa): ")
+        print("\nSelecione um exercício de 1 a 8 (digite 0 para finalizar o programa): ")
         val exe: Int = readln().toInt()
         when (exe) {
-            1 -> exe1();
-            2 -> exe2();
-            3 -> exe3();
-            4 -> exe4();
-            5 -> exe5();
-            6 -> exe6();
-            7 -> exe7();
-            8 -> exe8();
+            1 -> exe1()
+            2 -> exe2()
+            3 -> exe3()
+            4 -> exe4()
+            5 -> exe5()
+            6 -> exe6()
+            7 -> exe7()
+            8 -> exe8()
             0 -> {
                 println("Finalizando o programa...")
-                break;
+                break
             }
 
-            else -> println("Opção inválida...");
+            else -> println("Opção inválida...")
         }
     }
 }
@@ -33,7 +33,7 @@ fun exe1() {
 //    ou não. O programa deve exibir uma mensagem indicando se o número é primo.
     print("Digite um número inteiro: ")
     val num: Int = readln().toInt()
-    var primo: Boolean = true
+    var primo = true
     if (num == 0 || num == 1) {
         println("exceção")
         return
@@ -73,7 +73,7 @@ fun exe3() {
     val alunos = mutableListOf<Aluno>()
     for (i in 1..5) {
         print("Digite o nome do aluno $i: ")
-        val nome = readln() ?: ""
+        val nome = readln()
 
         println("Digite as notas do aluno $i (separadas por espaço):")
         val notas = readln().split(" ").map { it.toDouble() }.toDoubleArray()
@@ -97,7 +97,7 @@ fun exe4() {
     val nomes = ArrayList<String>()
     for (i in 1..10) {
         print("Digite o nome $i: ")
-        val nome = readln() ?: ""
+        val nome = readln()
         nomes.add(nome)
     }
     nomes.sort()
@@ -198,7 +198,7 @@ fun exe8() {
     val produtos = mutableListOf<Produto>()
     for (i in 1..5) {
         print("Digite o nome do produto $i: ")
-        val nome = readln() ?: ""
+        val nome = readln()
         println("Digite a quantidade de $nome em estoque: ")
         val quantidade = readln().toInt()
         println("Digite o nível mínimo de $nome em estoque: ")
