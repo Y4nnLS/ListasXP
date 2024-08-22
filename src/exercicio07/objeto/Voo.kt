@@ -1,4 +1,4 @@
-package objetos
+package exercicio07.objeto
 
 class Voo(val numeroDoVoo:String, val assentosDisponiveis:IntArray){
     fun verifDisponibilidade(assento: Int):Boolean{

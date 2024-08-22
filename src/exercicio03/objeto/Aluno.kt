@@ -1,4 +1,4 @@
-package objetos
+package exercicio03.objeto
 
 class Aluno(val nome: String, val notas:DoubleArray){
     fun media(): Double{

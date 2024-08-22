@@ -1,4 +1,4 @@
-package objetos
+package exercicio08.objeto
 
 class Produto(val nome: String, var quantidade: Int, val nivelMinimo: Int, val nivelMaximo:Int) {
 
