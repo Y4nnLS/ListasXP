@@ -1,9 +1,10 @@
 import objetos.Aluno
+import objetos.Produto
 import objetos.Voo
 
 fun main() {
     while (true) {
-        print("Selecione uma opção: ")
+        print("\nSelecione uma opção (0 para finalizar o programa): ")
         val exe: Int = readln().toInt()
         when (exe) {
             1 -> exe1();
@@ -54,6 +55,7 @@ fun exe2() {
 //    automaticamente.
 //    Instruções: Escreva um programa que leia um parágrafo de texto e conte o número de
 //    palavras nele. Exiba a contagem total de palavras.
+    println("Digite um parágrao de texto: ")
     val paragrafo: String = readlnOrNull() ?: ""
     println(paragrafo.split(Regex("\\s+")).count())
     return
@@ -136,7 +138,7 @@ fun exe6() {
         print("Temperatura do dia ${i + 1}:")
         dadosMetereologicos[i] = readln().toDoubleOrNull() ?: 0.0
     }
-    var auxlista = dadosMetereologicos.toList()
+    val auxlista = dadosMetereologicos.toList()
     val tempMax = dadosMetereologicos.maxOrNull()
     val diaMax = auxlista.indexOf(tempMax) + 1
     val tempMin = dadosMetereologicos.minOrNull()
@@ -158,31 +160,27 @@ fun exe7() {
 //    assentosDisponiveis (um array de inteiros), e reservarAssento(assento: Int): Boolean.
 //    Escreva um programa que permita ao usuário verificar a disponibilidade de um assento
 //    específico em um voo e reservar o assento se ele estiver disponível.
-// Inicializando um voo com 10 assentos disponíveis
 
         val voo = Voo("0000", IntArray(10) { it + 1 })
     while (true) {
-        // Exibindo os assentos disponíveis
-        // Verifica se há assentos disponíveis
         if (voo.disponiveis().isEmpty()) {
             println("Não há mais assentos disponíveis.")
-            break // Sai do loop se não houver assentos disponíveis
+            break
         }
-
         println("Assentos disponíveis: ${voo.disponiveis()}")
 
-        // Solicitando ao usuário o número do assento para reserva
-        print("Digite o número do assento para reserva: ")
+        print("Digite o número do assento para reserva(-1 para sair): ")
         val assento = readln().toInt()
+        if (assento == -1) break
 
         if (voo.verifDisponibilidade(assento)) {
             if (voo.reservarAssento(assento)) {
                 println("Assento $assento reservado!")
             } else {
-                println("Erro ao reservar o assento $assento.")
+                println("Assento $assento não foi reservado!")
             }
         } else {
-            println("O assento $assento não está disponível.")
+            println("assento $assento não disponível.")
         }
     }
 }
@@ -197,5 +195,23 @@ fun exe8() {
 //    verificar a quantidade disponível. Se a quantidade de um produto estiver abaixo do nível
 //    mínimo, a função reporEstoque() deve ser chamada para repor o estoque (aumentando a
 //    quantidade para o nível máximo).
+    val produtos = mutableListOf<Produto>()
+    for (i in 1..5) {
+        print("Digite o nome do produto $i: ")
+        val nome = readln() ?: ""
+        println("Digite a quantidade de $nome em estoque: ")
+        val quantidade = readln().toInt()
+        println("Digite o nível mínimo de $nome em estoque: ")
+        val nivelMinimo = readln().toInt()
+        println("Digite o nível máximo de $nome em estoque: ")
+        val nivelMaximo = readln().toInt()
 
+        val produto = Produto(nome, quantidade, nivelMinimo, nivelMaximo)
+        produtos.add(produto)
+    }
+    for (produto in produtos){
+        println(produto)
+        produto.verificaEstoque()
+
+    }
 }
